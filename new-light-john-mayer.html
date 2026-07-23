@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Light — John Mayer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #4EA7E8;        /* sky blue */
+    --dusk: #3FAE52;         /* field green */
+    --moon-cream: #08341F;   /* dark green text for readability */
+    --dusk-blue: #1F6FB2;    /* deep sky accent */
+    --phone-amber: #FFCB2E;  /* sun yellow */
+    --new-coral: #2E9E4A;    /* grass accent */
+    --line: rgba(8,52,31,0.15);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--night);
+    color:var(--moon-cream);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--new-coral); color:var(--night); }
+
+  a{color:inherit;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--phone-amber);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.6rem clamp(1.5rem,5vw,4rem);
+    background:linear-gradient(to bottom, rgba(126,200,242,0.85), transparent);
+  }
+  nav .brand{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:1.1rem;
+    letter-spacing:0.02em;
+  }
+  nav .brand span{ color:var(--phone-amber); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:8rem 1.5rem 4rem;
+    background: linear-gradient(180deg,
+      #7EC8F2 0%,
+      #4EA7E8 32%,
+      #4EA7E8 55%,
+      #59BF5C 56%,
+      #3FAE52 100%);
+    overflow:hidden;
+  }
+
+  /* sun */
+  .sun-emoji{
+    position:absolute;
+    top:6%;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:5rem;
+    line-height:1;
+    filter:drop-shadow(0 0 30px rgba(255,203,46,0.7));
+    animation:pulseGlow 5.5s ease-in-out infinite;
+    pointer-events:none;
+    z-index:1;
+  }
+  @keyframes pulseGlow{
+    0%,100%{ transform:translateX(-50%) scale(1); }
+    50%{ transform:translateX(-50%) scale(1.1); }
+  }
+
+  .field-critters{
+    position:absolute;
+    bottom:4%;
+    left:0; right:0;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    gap:2.5rem;
+    font-size:3.2rem;
+    line-height:1;
+    z-index:1;
+    pointer-events:none;
+  }
+  .field-critters .zebra{ font-size:3.6rem; }
+  .field-critters .waver{ animation:wave 1.6s ease-in-out infinite; transform-origin:70% 70%; }
+  @keyframes wave{
+    0%,100%{ transform:rotate(0deg); }
+    20%{ transform:rotate(14deg); }
+    40%{ transform:rotate(-8deg); }
+    60%{ transform:rotate(14deg); }
+    80%{ transform:rotate(0deg); }
+  }
+
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(3.2rem,10vw,7.5rem);
+    line-height:0.92;
+    letter-spacing:-0.01em;
+    color:var(--phone-amber);
+    text-shadow:none;
+    filter:none;
+    z-index:2;
+    margin-top:1.2rem;
+  }
+  .hero .artist{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.85rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:#1F6FB2;
+    margin-top:1.4rem;
+    z-index:2;
+  }
+  .hero p.tagline{
+    max-width:36rem;
+    margin-top:1.8rem;
+    font-size:1.05rem;
+    line-height:1.7;
+    color:rgba(8,52,31,0.78);
+    font-weight:300;
+    z-index:2;
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:2.2rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:rgba(8,52,31,0.55);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .scroll-cue::after{
+    content:"";
+    width:1px; height:34px;
+    background:linear-gradient(var(--phone-amber), transparent);
+    animation:dropline 2s ease-in-out infinite;
+  }
+  @keyframes dropline{
+    0%{ transform:scaleY(0); transform-origin:top; }
+    50%{ transform:scaleY(1); transform-origin:top; }
+    50.1%{ transform-origin:bottom; }
+    100%{ transform:scaleY(0); transform-origin:bottom; }
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{
+    padding:7rem clamp(1.5rem,6vw,6rem);
+    position:relative;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:1rem;
+    margin-bottom:2.8rem;
+  }
+  .section-head .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    color:var(--dusk-blue);
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:0.3rem 0.75rem;
+  }
+  h2{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(1.8rem,4vw,2.6rem);
+  }
+
+  /* ---------- VIDEO / AUDIO ---------- */
+  .video-section{
+    background:linear-gradient(180deg, var(--night), var(--dusk) 60%, var(--night));
+  }
+  .video-wrap{
+    position:relative;
+    width:100%;
+    max-width:900px;
+    margin:0 auto;
+    border-radius:14px;
+    overflow:hidden;
+    aspect-ratio:16/9;
+    box-shadow:0 40px 90px -30px rgba(8,52,31,0.3), 0 0 0 1px var(--line);
+  }
+  .video-wrap iframe{
+    width:100%; height:100%;
+    border:0;
+    display:block;
+  }
+  .audio-wrap{
+    position:relative;
+    width:100%;
+    max-width:480px;
+    margin:0 auto;
+    border-radius:20px;
+    padding:2.4rem 2rem;
+    text-align:center;
+    background:linear-gradient(160deg, rgba(255,255,255,0.55), rgba(255,255,255,0.28));
+    border:1px solid var(--line);
+    box-shadow:0 40px 90px -30px rgba(8,52,31,0.35);
+  }
+  .audio-wrap .disc{
+    width:110px; height:110px;
+    margin:0 auto 1.4rem;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, var(--phone-amber), var(--dusk-blue) 75%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 30px -8px rgba(8,52,31,0.4);
+    animation:spinDisc 6s linear infinite;
+    animation-play-state:paused;
+  }
+  .audio-wrap .disc.spinning{ animation-play-state:running; }
+  @keyframes spinDisc{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+  .audio-wrap .disc::after{
+    content:"";
+    width:22px; height:22px;
+    border-radius:50%;
+    background:var(--moon-cream);
+  }
+  .audio-wrap h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:1.1rem;
+    color:var(--moon-cream);
+    margin-bottom:0.3rem;
+  }
+  .audio-wrap .who{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:rgba(8,52,31,0.55);
+    margin-bottom:1.6rem;
+  }
+  .play-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+    font-size:0.95rem;
+    color:var(--night);
+    background:linear-gradient(120deg, var(--phone-amber), var(--new-coral));
+    padding:0.85rem 1.8rem;
+    border-radius:100px;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 16px 34px -16px rgba(8,52,31,0.45);
+    transition:transform 0.2s ease;
+  }
+  .play-btn:hover{ transform:translateY(-2px); }
+  .audio-iframe-hidden{
+    position:absolute;
+    width:1px; height:1px;
+    opacity:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .video-caption{
+    text-align:center;
+    margin-top:1.4rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:0.08em;
+    color:rgba(8,52,31,0.6);
+  }
+
+  /* ---------- MEANING ---------- */
+  .meaning{
+    background:var(--night);
+  }
+  .meaning-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:4rem;
+    align-items:start;
+  }
+  @media (max-width:840px){ .meaning-grid{ grid-template-columns:1fr; } }
+
+  .meaning-lead{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:clamp(1.4rem,2.6vw,1.9rem);
+    line-height:1.5;
+    color:var(--moon-cream);
+  }
+  .meaning-lead em{ color:var(--phone-amber); font-style:normal; }
+
+  .pillars{
+    display:flex;
+    flex-direction:column;
+    gap:1.8rem;
+  }
+  .pillar{
+    border-left:2px solid var(--dusk-blue);
+    padding-left:1.4rem;
+    transition:border-color 0.3s ease;
+  }
+  .pillar:hover{ border-color:var(--phone-amber); }
+  .pillar h3{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    letter-spacing:0.03em;
+    color:var(--phone-amber);
+    margin-bottom:0.5rem;
+  }
+  .pillar p{
+    font-size:0.95rem;
+    line-height:1.7;
+    color:rgba(8,52,31,0.75);
+    font-weight:300;
+  }
+
+  /* ---------- SCROLLER ---------- */
+  .scroller-section{
+    background:var(--dusk);
+    padding-top:5rem;
+    padding-bottom:5rem;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .scroller-section .section-head{ padding:0 clamp(1.5rem,6vw,6rem); margin-bottom:2rem; }
+  .marquee{
+    display:flex;
+    overflow:hidden;
+    user-select:none;
+    -webkit-mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  }
+  .marquee-track{
+    display:flex;
+    gap:3rem;
+    white-space:nowrap;
+    animation:scrollRL 32s linear infinite;
+    padding:0.5rem 0;
+  }
+  .marquee:hover .marquee-track{ animation-play-state:paused; }
+  @keyframes scrollRL{
+    from{ transform:translateX(0%); }
+    to{ transform:translateX(-50%); }
+  }
+  .marquee-track span{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.3rem,3vw,2rem);
+    color:rgba(8,52,31,0.9);
+    display:inline-flex;
+    align-items:center;
+    gap:3rem;
+  }
+  .marquee-track span::after{
+    content:"◆";
+    font-family:'Inter',sans-serif;
+    font-size:0.7rem;
+    color:var(--phone-amber);
+  }
+  .scroller-note{
+    padding:0 clamp(1.5rem,6vw,6rem);
+    margin-top:1.6rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    color:rgba(8,52,31,0.5);
+    letter-spacing:0.02em;
+  }
+  .scroller-note a{ color:var(--phone-amber); text-decoration:underline; text-underline-offset:3px; }
+
+  /* ---------- CTA / EASYPAGEX ---------- */
+  .cta{
+    background:radial-gradient(ellipse 70% 60% at 50% 0%, rgba(255,177,105,0.14), transparent 70%), var(--night);
+    text-align:center;
+    padding-top:6rem;
+    padding-bottom:6rem;
+  }
+  .cta h2{ margin-bottom:1rem; }
+  .cta p{
+    max-width:32rem;
+    margin:0 auto 2.4rem;
+    color:rgba(8,52,31,0.72);
+    font-size:0.98rem;
+    line-height:1.7;
+  }
+  .btn-easypagex{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+    font-size:0.95rem;
+    color:var(--night);
+    background:linear-gradient(120deg, var(--phone-amber), var(--new-coral));
+    padding:0.95rem 2.2rem;
+    border-radius:100px;
+    text-decoration:none;
+    box-shadow:0 20px 40px -18px rgba(255,177,105,0.5);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-easypagex:hover{
+    transform:translateY(-2px);
+    box-shadow:0 26px 50px -18px rgba(255,177,105,0.65);
+  }
+  .btn-easypagex svg{ width:16px; height:16px; }
+
+  footer{
+    text-align:center;
+    padding:2.5rem 1.5rem 3rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    color:rgba(8,52,31,0.45);
+    letter-spacing:0.05em;
+    border-top:1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .sun-emoji, .field-critters .waver, .scroll-cue::after, .marquee-track{ animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">new<span>·</span>light</div>
+  <div class="eyebrow">John Mayer</div>
+</nav>
+
+<header class="hero">
+  <div class="sun-emoji" aria-hidden="true">☀️</div>
+  <p class="eyebrow" style="z-index:2;">The Search for Everything · 2017</p>
+  <h1>New&nbsp;Light</h1>
+  <p class="artist">John Mayer</p>
+  <p class="tagline">A song about waiting in the dark for someone to look again — and the quiet, freeing moment of realizing you were never in control of when, or if, they would.</p>
+  <div class="field-critters" aria-hidden="true">
+    <span class="zebra">🦓</span>
+    <span class="waver">👋</span>
+  </div>
+  <div class="scroll-cue">scroll</div>
+</header>
+
+<section class="video-section" id="listen">
+  <div class="section-head">
+    <span class="num">01</span>
+    <h2>Listen</h2>
+  </div>
+  <div class="audio-wrap">
+    <div class="disc" aria-hidden="true"></div>
+    <h3>New Light</h3>
+    <p class="who">John Mayer</p>
+    <a class="play-btn" href="https://www.youtube.com/watch?v=mQ055hHdxbE" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <span>Play on YouTube</span>
+    </a>
+  </div>
+</section>
+
+<section class="meaning" id="meaning">
+  <div class="section-head">
+    <span class="num">02</span>
+    <h2>What It's About</h2>
+  </div>
+  <div class="meaning-grid">
+    <p class="meaning-lead">At its core, "New Light" is a song about <em>self-awareness</em> — a narrator who knows exactly how he looks from the outside, and asks for one honest chance to be seen differently anyway.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Radical Self-Awareness</h3>
+        <p>The narrator doesn't pretend he's misunderstood. He names his own weak position plainly — stuck, overlooked, easy to doubt — before asking for anything. There's no self-pity in it, just clear-eyed honesty about where he stands.</p>
+      </div>
+      <div class="pillar">
+        <h3>Radical Vulnerability</h3>
+        <p>Rather than protecting his ego, he opens with the least flattering version of himself. Asking to be seen "in a new light" is an admission that the current light isn't kind — and a request anyway, made without armor.</p>
+      </div>
+      <div class="pillar">
+        <h3>Letting Go of Control</h3>
+        <p>The freeing part of the song is what it doesn't promise. He can't make anyone see him differently — he can only offer the one night, the one chance, and then let the outcome belong to someone else entirely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scroller-section">
+  <div class="section-head">
+    <span class="num">03</span>
+    <h2>In His Own Words — Themes</h2>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>being overlooked</span>
+      <span>asking for one honest chance</span>
+      <span>letting go of the outcome</span>
+      <span>moonlight over certainty</span>
+      <span>vulnerability without armor</span>
+      <span>a new way of being seen</span>
+      <span>being overlooked</span>
+      <span>asking for one honest chance</span>
+      <span>letting go of the outcome</span>
+      <span>moonlight over certainty</span>
+      <span>vulnerability without armor</span>
+      <span>a new way of being seen</span>
+    </div>
+  </div>
+  <p class="scroller-note">These are theme keywords, not the song's lyrics — copyright keeps us from reproducing the actual words here. Full lyrics: <a href="https://genius.com/John-mayer-new-light-lyrics" target="_blank" rel="noopener">genius.com</a></p>
+</section>
+
+<section class="cta">
+  <p class="eyebrow" style="justify-content:center;display:flex;margin-bottom:1rem;">Built with</p>
+  <h2>Make a page like this one</h2>
+  <p>This site was put together as a fan tribute page. If you want to build something similar — for a song, an artist, or anything else — EasyPageX can help you spin it up fast.</p>
+  <a class="btn-easypagex" href="https://easypagex.com" target="_blank" rel="noopener">
+    Build with EasyPageX
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+  </a>
+</section>
+
+<footer>
+  Unofficial fan page · "New Light" is a song by John Mayer, released 2017 · Not affiliated with the artist or label
+</footer>
+
+</body>
+</html>
